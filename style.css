@@ -1,0 +1,223 @@
+/* reset style */
+*{
+    margin: 0;
+    padding: 0;
+}
+/* default style */
+main{
+    max-width: 700px;
+    margin: 0 auto;
+}
+h2{
+    padding: 15px 0;
+    font-size: 22px;
+}
+h5,h3{
+    margin-bottom: 15px;
+}
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ul,ol{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+input{
+    display: block;
+    padding: 10px;
+    height: 25px;
+    border-radius: 3px;
+    margin: 30px 0;
+    min-width: 350px;
+    border: none;
+}
+input:focus{
+    outline: none;
+    border: none;
+}
+button{
+    border: none;
+    cursor: pointer;
+    height: 50px;
+    margin: 15px;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.card--body{
+    border-radius: 5px;
+    padding: 15px;
+    margin: 30px 0;
+    background-color: transparent;
+}
+.budgets{
+    font-size: 25px;
+    color: #fff;
+    font-family: cursive;
+}
+.banner--block{
+    position: relative;
+    padding: 50px 0;
+    margin:  0 auto;
+    border-radius: 7px;
+    overflow: hidden;
+    background-size: cover;
+    background-image: url('https://pixabay.com/get/gc3d975e5219ce5a4e91304167421cb07f6007751a4dc66e01a8d1c5d08299e75b636dfd3f305c70946de172c05671945_1920.jpg');
+}
+.banner--block:before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.5);
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.banner--block h3{
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+.income--box,
+.expenses--box{
+    position: relative;
+    z-index: 2;
+    height: 55px;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 300px;
+    margin: 8px auto;
+    font-family: cursive;
+    text-transform: uppercase;
+}
+.income--ammount,
+.expenses--ammount{
+    color: #fff;
+}
+.income--box{
+    background-color: rgb(0 188 212 / 86%);
+}
+.expenses--box{
+    background-color: rgb(255 87 34);
+}
+.controller--block,
+.others--block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.controller--block{
+    background: rgb(245 245 245 / 68%);
+}
+.input--value{
+    width: 100px;
+    min-width: auto;
+    margin-left: 15px;
+}
+select{
+    margin-right: 15px;
+    padding: 13px;
+}
+.income__entry--block,
+.expenses__entry--block{
+    flex-grow: 5;
+    margin: 0 8px;
+}
+.others--block{
+    padding: 0;
+}
+.others--block h4{
+    font-family: cursive;
+    text-transform: uppercase;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    margin-bottom: 30px;
+}
+.expenses__entry,
+.income__entry{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px;
+    background: rgb(245 245 245 / 68%);
+    border-radius: 5px;
+}
+.entry__title,
+.entry--remove,
+.entry__balance{
+    font-family: cursive;
+    transition: all 0.3s ease-in;
+}
+.entry--remove{
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    opacity: 0;
+}
+.expenses__entry:hover .entry__balance,
+.income__entry:hover .entry__balance{
+    transform: translateX(-30px);
+}
+.expenses__entry:hover .entry--remove,
+.income__entry:hover .entry--remove{
+    opacity: 1;
+}
+
+.income__entry--block h4,
+.income__entry--block .entry__balance{
+    color: rgb(0 188 212 / 86%);
+}
+.expenses__entry--block .entry__balance,
+.expenses__entry--block h4{
+    color: rgb(255 87 34);
+}
+.entry--remove{
+    color: red;
+}
+
+@media only screen and (max-width: 700px) {
+    input{
+        min-width: 300px;
+    }
+}
+
+@media only screen and (max-width: 568px) {
+    input{
+        min-width: auto;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .controller--block,
+    .others--block {
+        flex-direction: column;
+        margin: 0px 15px;
+    }
+    .expenses__entry--block,
+    .income__entry--block{
+        width: 100%;
+        margin: 30px 0;
+    }
+    .controller--block{
+        padding: 30px;
+        margin-top: 40px;
+    }
+    input,
+    select,
+    button,
+    .input--value{
+        margin: 15px 0;
+        width: 100%;
+    }
+}
