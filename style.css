@@ -133,6 +133,7 @@ select{
 .expenses__entry--block{
     flex-grow: 5;
     margin: 0 8px;
+    min-height: 350px;
 }
 .others--block{
     padding: 0;
