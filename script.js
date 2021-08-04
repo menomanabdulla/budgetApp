@@ -46,8 +46,18 @@
                 return newItem;
 
             },
-            testing: () => {
-                console.log(data)
+            removeItem: (type, id) => {
+                let ids, index;
+
+                ids = data.allItems[type].map((item) => {
+                    return item.id;
+                })
+
+                index = ids.indexOf(id);
+
+                if(index !== -1 ){
+                    data.allItems[type].splice(index,1);
+                }
             },
             cacualteBudget: () => {
                 //Calculate sum of income and expenses
@@ -70,6 +80,10 @@
                     totalExp: data.totals.exp,
                     percentage: data.percentage
                 }
+            },
+
+            testing: () => {
+                console.log(data)
             }
            
         }
@@ -109,13 +123,12 @@
                 }
             },
             addListItem: (obj, type) => {
-                
                 let html, newHtml, element;
                 //Create HTML string with placeholder text
                 if(type === 'inc'){
                     element = domSelectors.incomeEntryList
                     html =  `
-                        <div id="income-%id%" class="income__entry">
+                        <div id="inc-%id%" class="income__entry">
                             <span class="entry__title">%des%</span>
                             <span class="entry__balance">%val%</span>
                             <span class="entry--remove">X</span>
@@ -124,7 +137,7 @@
                 }else{
                     element = domSelectors.expensesEntryList
                     html = `
-                    <div id="expenses-%id%" class="expenses__entry">
+                    <div id="exp-%id%" class="expenses__entry">
                         <span class="entry__title">%des%</span>
                         <span class="entry__balance">%val%</span>
                         <span class="entry--remove">X</span>
@@ -142,12 +155,16 @@
                 getbyID(element).insertAdjacentHTML('beforeend',  newHtml);
 
             },
-            clearFields: () => {
+            removeListItem: id => {
+                let el = getbyID(id);
+                el.parentNode.removeChild(el);
+            },
+            clearFields: _ => {
                 let fields, fieldsArr;
                 fields = document.querySelectorAll(domSelectors.entryValueClass+ ','+ domSelectors.entryDesClass);
                 fieldsArr = Array.prototype.slice.call(fields);
 
-                fieldsArr.forEach((element, index, array) => {
+                fieldsArr.forEach((element) => {
                     element.value = "";
 
                 });
@@ -179,7 +196,6 @@
 
             //Display the budget in the UI
             UICtrl.displayBudget(budgetData);
-
         }
 
         const ctrlAddItem = () => {
@@ -205,10 +221,25 @@
         }
 
         const ctrlDeleteItem = (e) => {
-            let itemId;
-            itemId = e.target.parentNode.parentNode.id;
-            if(itemId){
+            let itemId,splitID, type, ID;
 
+            itemId = e.target.parentNode.id;
+
+            if(itemId){
+                splitID = itemId.split('-');
+                type = splitID[0];
+                ID = parseInt(splitID[1]);
+
+                // delete the item from the data-structure
+
+                bdgtCtrl.removeItem(type, ID);
+
+                // delete the item from the UI
+
+                UICtrl.removeListItem(itemId);
+
+                // update and show the new budget
+                updateBudget()
             }
 
         }
@@ -222,12 +253,9 @@
                 }
             });
             UICtrl.getbyID(UICtrl.domSelectors.othersBlock).addEventListener('click', ctrlDeleteItem)
+        
         }
 
-       
-
-
-   
 
         return{
            init:  _ => {
@@ -246,3 +274,4 @@
 
 
     appController.init();
+
