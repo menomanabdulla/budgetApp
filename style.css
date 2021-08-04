@@ -178,6 +178,11 @@ select{
 .entry__balance{
     font-family: cursive;
     transition: all 0.3s ease-in;
+    position: relative;
+    z-index: 22;
+}
+.expenses__entry .entry__balance{
+    transform: translateX(-40px);
 }
 .entry--remove{
     position: absolute;
@@ -185,9 +190,34 @@ select{
     cursor: pointer;
     opacity: 0;
 }
-.expenses__entry:hover .entry__balance,
+.entry__percentage{
+    position: absolute;
+    right: 15px;
+    top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 100%;
+    font-size: 10px;
+    transform: translateY(-10px);
+    color: rgb(255 87 34);
+    height: 20px;
+    width: 28px;
+    background: rgba(255,255,255,1);
+    text-align: center;
+    border-radius: 5px;
+    margin: 0 auto;
+    transition: all 0.3s;
+}
+
 .income__entry:hover .entry__balance{
     transform: translateX(-30px);
+}
+.expenses__entry:hover .entry__balance{
+    transform: translateX(-68px);
+}
+.expenses__entry:hover .entry__percentage{
+    right: 45px;
 }
 .expenses__entry:hover .entry--remove,
 .income__entry:hover .entry--remove{
