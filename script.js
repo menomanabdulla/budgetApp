@@ -134,7 +134,8 @@
             incomeAmmount: 'incomeAmmount',
             expensesAmmount: 'expensesAmmount',
             expensesPercentage: 'expensesPercentage',
-            entryPercentage: '.entry__percentage'
+            entryPercentage: '.entry__percentage',
+            dateBlock: 'dateBlock'
             
         }
         const getbyID = (e) => document.getElementById(e);
@@ -224,6 +225,28 @@
                     }
                 })
 
+            },
+            showDate: _ => {
+                let date, year, month;
+                date = new Date();
+                const montsArr = [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                    'July',
+                    'August',
+                    'September',
+                    'October',
+                    'November',
+                    'December'
+                ]
+                year =  date.getFullYear();
+                month = date.getMonth();
+                month = montsArr[month]
+                getbyID(domSelectors.dateBlock).innerText = 'Budget of '+ month + ', '+year; 
             }
         }
     })()
@@ -263,9 +286,6 @@
             }
             //. Clear Fields
             UICtrl.clearFields();
-            
-
-
         }
 
         const ctrlDeleteItem = (e) => {
@@ -331,6 +351,7 @@
                     totalExp: 0,
                     percentage: -1
                });
+               UICtrl.showDate();
            }
         }
     })(budgetController, uiController)
