@@ -69,7 +69,8 @@ button{
     border-radius: 7px;
     overflow: hidden;
     background-size: cover;
-    background-image: url('https://pixabay.com/get/gc3d975e5219ce5a4e91304167421cb07f6007751a4dc66e01a8d1c5d08299e75b636dfd3f305c70946de172c05671945_1920.jpg');
+    background-image: url('./banner.jpg');
+    background-position: bottom;
 }
 .banner--block:before {
     position: absolute;
